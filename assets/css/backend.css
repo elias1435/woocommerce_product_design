@@ -1,0 +1,88 @@
+.pd-variontion-upload-title{
+    font-size: 17px;
+    font-family: inherit;
+    font-weight: 600;
+    font-style: normal;
+    margin: 0px;
+    padding: 0px;
+    margin-bottom: 15px;
+}
+.pd-variation-image-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px;
+}
+.pd-variation-image-flex .image-box{
+    width: 128px;
+    height: 128px;
+    display: inline-block;
+    margin: 5px 0px;
+}
+.pd-variation-image-flex .buttons-box{
+    width: 128px !important;
+    height: 128px !important;
+    display: inline-block;
+    margin: 5px 0px;
+}
+.pd-variation-image-flex .image-box p{
+    margin: 0;
+    padding: 0;
+}
+.pd-variation-image-flex .image-box p a{
+    margin: 0;
+    padding: 0;
+}
+.pd-variation-image-flex .image-box p a img{
+    width: 100%;
+    height: 100%;
+}
+.image-box p a.remove::before {
+    top: 2px !important;
+    left: unset !important;
+    right: 2px !important;
+    line-height: 34px !important;
+    font-size: 34px !important;
+    border: 1px solid #fff !important;
+    width: 34px;
+    height: 34px;
+    background: #fff;
+    border-radius: 100%;
+}
+.form-flex-box p a.remove::before {
+    top: 2px !important;
+    left: unset !important;
+    right: 2px !important;
+    line-height: 34px !important;
+    font-size: 34px !important;
+    border: 1px solid #fff !important;
+    width: 34px;
+    height: 34px;
+    background: #fff;
+    border-radius: 100%;
+}
+.buttons-box p{
+    margin: 0;
+    padding: 0;
+}
+.add-slot {
+    width: 100%;
+    margin: 5px;
+}
+.remove-slot {
+    width: 100%;
+    margin: 5px;
+}
+.fixed .column-pdsn-meta-preview{
+    width: 3%;
+}
+.pdn-upload-title-bknd{
+    font-size: 16px;
+    font-family: inherit;
+    font-weight: 600;
+    font-style: normal;
+    margin: 0px;
+    padding: 0px;
+    margin-bottom: 5px;
+    text-align: center;
+}
