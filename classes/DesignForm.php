@@ -343,91 +343,111 @@ class DesignForm{
 		    $add_txt          = esc_html__( 'Add', 'woocommerce' );
 		    $remove_txt       = esc_html__( 'Remove', 'woocommerce' );
 		    ?>
-		    <div class="custom-uploads">
-		    <div class="pd-variation-image-flex">
-		    	 <div class="pdn-flex-box-backend">
-		    		<h4 class="pdn-upload-title-bknd"><?php echo __( 'Front', 'woocommerce' ); ?></h4>
-		    
-		  <?php  
-		        // Add an Image field /Loop through each existing attachment image ID
-		        printf('<div class="image-box"><p class="form-row form-row-wide upload_image">
-		            <a href="#" class="upload_image_button tips %s" data-tip="%s" rel="%s"><img src="%s" />
-		            <input type="hidden" name="front_image_id" class="upload_image_id" value="%s" /></a>
-		            <p></div>', 
-		            $front_id ? 'remove' : '', $front_id ? $remove_img_txt : $upload_img_txt, $variation_id,
-		            $front_id ? esc_url( wp_get_attachment_thumb_url( $front_id ) ) : $placeholder, $front_id
-		        );
-		    ?>
-		    </div>
-		    <div class="pdn-flex-box-backend">
-		    		<h4 class="pdn-upload-title-bknd"><?php echo __( 'Back', 'woocommerce' ); ?></h4>
-		    
-		  <?php  
-		        // Add an Image field /Loop through each existing attachment image ID
-		        printf('<div class="image-box"><p class="form-row form-row-wide upload_image">
-		            <a href="#" class="upload_image_button tips %s" data-tip="%s" rel="%s"><img src="%s" />
-		            <input type="hidden" name="back_image_id" class="upload_image_id" value="%s" /></a>
-		            <p></div>', 
-		            $back_id ? 'remove' : '', $back_id ? $remove_img_txt : $upload_img_txt, $variation_id,
-		            $back_id ? esc_url( wp_get_attachment_thumb_url( $back_id ) ) : $placeholder, $back_id
-		        );
-		    ?>
-		    </div>
+<div class="custom-uploads">
+  <div class="pd-variation-image-flex">
 
-		    <div class="pdn-flex-box-backend">
-		    		<h4 class="pdn-upload-title-bknd"><?php echo __( 'R-sleeve', 'woocommerce' ); ?></h4>
-		    
-		  <?php  
-		        // Add an Image field /Loop through each existing attachment image ID
-		        printf('<div class="image-box"><p class="form-row form-row-wide upload_image">
-		            <a href="#" class="upload_image_button tips %s" data-tip="%s" rel="%s"><img src="%s" />
-		            <input type="hidden" name="r_sleeve_image_id" class="upload_image_id" value="%s" /></a>
-		            <p></div>', 
-		            $r_sleeve_id ? 'remove' : '', $r_sleeve_id ? $remove_img_txt : $upload_img_txt, $variation_id,
-		            $r_sleeve_id ? esc_url( wp_get_attachment_thumb_url( $r_sleeve_id ) ) : $placeholder, $r_sleeve_id
-		        );
-		    ?>
-		    </div>
-		    <div class="pdn-flex-box-backend">
-		    		<h4 class="pdn-upload-title-bknd"><?php echo __( 'L-sleeve', 'woocommerce' ); ?></h4>
-		    
-		  <?php  
-		        // Add an Image field /Loop through each existing attachment image ID
-		        printf('<div class="image-box"><p class="form-row form-row-wide upload_image">
-		            <a href="#" class="upload_image_button tips %s" data-tip="%s" rel="%s"><img src="%s" />
-		            <input type="hidden" name="l_sleeve_image_id" class="upload_image_id" value="%s" /></a>
-		            <p></div>', 
-		            $l_sleeve_id ? 'remove' : '', $l_sleeve_id ? $remove_img_txt : $upload_img_txt, $variation_id,
-		            $l_sleeve_id ? esc_url( wp_get_attachment_thumb_url( $l_sleeve_id ) ) : $placeholder, $l_sleeve_id
-		        );
-		    ?>
-		    </div>
+    <?php
+    // FRONT
+    $name = sprintf('front_image_id[%d]', $variation_id);
+    $value = esc_attr($front_image_id);
+    $img = $front_id ? esc_url(wp_get_attachment_thumb_url($front_id)) : $placeholder;
+    $class = $front_id ? 'remove' : '';
+    $tip = $front_id ? $remove_img_txt : $upload_img_txt;
 
-		    </div>
-		</div>
+    echo '<div class="pdn-flex-box-backend">
+      <h4 class="pdn-upload-title-bknd">' . __( 'Front', 'woocommerce' ) . '</h4>
+      <div class="image-box"><p class="form-row form-row-wide upload_image">
+        <a href="#" class="upload_image_button tips ' . $class . '" data-tip="' . $tip . '" rel="' . $variation_id . '">
+          <img src="' . $img . '" />
+          <input type="hidden" name="' . $name . '" class="upload_image_id" value="' . $value . '" />
+        </a>
+      </p></div>
+    </div>';
+
+    // BACK
+    $name = sprintf('back_image_id[%d]', $variation_id);
+    $value = esc_attr($back_image_id);
+    $img = $back_id ? esc_url(wp_get_attachment_thumb_url($back_id)) : $placeholder;
+    $class = $back_id ? 'remove' : '';
+    $tip = $back_id ? $remove_img_txt : $upload_img_txt;
+
+    echo '<div class="pdn-flex-box-backend">
+      <h4 class="pdn-upload-title-bknd">' . __( 'Back', 'woocommerce' ) . '</h4>
+      <div class="image-box"><p class="form-row form-row-wide upload_image">
+        <a href="#" class="upload_image_button tips ' . $class . '" data-tip="' . $tip . '" rel="' . $variation_id . '">
+          <img src="' . $img . '" />
+          <input type="hidden" name="' . $name . '" class="upload_image_id" value="' . $value . '" />
+        </a>
+      </p></div>
+    </div>';
+
+    // R-SLEEVE
+    $name = sprintf('r_sleeve_image_id[%d]', $variation_id);
+    $value = esc_attr($r_sleeve_image_id);
+    $img = $r_sleeve_id ? esc_url(wp_get_attachment_thumb_url($r_sleeve_id)) : $placeholder;
+    $class = $r_sleeve_id ? 'remove' : '';
+    $tip = $r_sleeve_id ? $remove_img_txt : $upload_img_txt;
+
+    echo '<div class="pdn-flex-box-backend">
+      <h4 class="pdn-upload-title-bknd">' . __( 'R-sleeve', 'woocommerce' ) . '</h4>
+      <div class="image-box"><p class="form-row form-row-wide upload_image">
+        <a href="#" class="upload_image_button tips ' . $class . '" data-tip="' . $tip . '" rel="' . $variation_id . '">
+          <img src="' . $img . '" />
+          <input type="hidden" name="' . $name . '" class="upload_image_id" value="' . $value . '" />
+        </a>
+      </p></div>
+    </div>';
+
+    // L-SLEEVE
+    $name = sprintf('l_sleeve_image_id[%d]', $variation_id);
+    $value = esc_attr($l_sleeve_image_id);
+    $img = $l_sleeve_id ? esc_url(wp_get_attachment_thumb_url($l_sleeve_id)) : $placeholder;
+    $class = $l_sleeve_id ? 'remove' : '';
+    $tip = $l_sleeve_id ? $remove_img_txt : $upload_img_txt;
+
+    echo '<div class="pdn-flex-box-backend">
+      <h4 class="pdn-upload-title-bknd">' . __( 'L-sleeve', 'woocommerce' ) . '</h4>
+      <div class="image-box"><p class="form-row form-row-wide upload_image">
+        <a href="#" class="upload_image_button tips ' . $class . '" data-tip="' . $tip . '" rel="' . $variation_id . '">
+          <img src="' . $img . '" />
+          <input type="hidden" name="' . $name . '" class="upload_image_id" value="' . $value . '" />
+        </a>
+      </p></div>
+    </div>';
+    ?>
+
+  </div>
+</div>
+
 		    <?php
 	    endif;
 	}
-	public function pdn_product_image_backend_save( $variation, $i ) {
-		$attribute_color = wc_get_product_variation_attributes( $variation->get_id() );
-		$color_term 	  = 'attribute_' . get_option( 'product_design_color_taxonomies' );
-	    	if ( array_key_exists( $color_term, $attribute_color ) ) {
-	        
-	        if( isset( $_POST['front_image_id'] ) && ! empty( $_POST['front_image_id'] ) ){
-	        	$variation->update_meta_data( 'pdn_front_image_id', esc_attr( $_POST["front_image_id"] ) ); // save
-	        }
-	        if( isset( $_POST['back_image_id'] ) && ! empty( $_POST['back_image_id'] ) ){
-	        	$variation->update_meta_data( 'pdn_back_image_id', esc_attr( $_POST["back_image_id"] ) ); // save
-	        }
-	        if( isset( $_POST['r_sleeve_image_id'] ) && ! empty( $_POST['r_sleeve_image_id'] ) ){
-	        	$variation->update_meta_data( 'pdn_r_sleeve_image_id', esc_attr( $_POST["r_sleeve_image_id"] ) ); // save
-	        }
-	        if( isset( $_POST['l_sleeve_image_id'] ) && ! empty( $_POST['l_sleeve_image_id'] ) ){
-	        	$variation->update_meta_data( 'pdn_l_sleeve_image_id', esc_attr( $_POST["l_sleeve_image_id"] ) ); // save
-	        }
+public function pdn_product_image_backend_save( $variation, $i ) {
+	$attribute_color = wc_get_product_variation_attributes( $variation->get_id() );
+	$color_term = 'attribute_' . get_option( 'product_design_color_taxonomies' );
 
-	    	}
+	if ( array_key_exists( $color_term, $attribute_color ) ) {
+
+		$variation_id = $variation->get_id(); // current variation ID
+
+		if ( isset( $_POST['front_image_id'][ $variation_id ] ) && ! empty( $_POST['front_image_id'][ $variation_id ] ) ) {
+			$variation->update_meta_data( 'pdn_front_image_id', esc_attr( $_POST['front_image_id'][ $variation_id ] ) );
+		}
+
+		if ( isset( $_POST['back_image_id'][ $variation_id ] ) && ! empty( $_POST['back_image_id'][ $variation_id ] ) ) {
+			$variation->update_meta_data( 'pdn_back_image_id', esc_attr( $_POST['back_image_id'][ $variation_id ] ) );
+		}
+
+		if ( isset( $_POST['r_sleeve_image_id'][ $variation_id ] ) && ! empty( $_POST['r_sleeve_image_id'][ $variation_id ] ) ) {
+			$variation->update_meta_data( 'pdn_r_sleeve_image_id', esc_attr( $_POST['r_sleeve_image_id'][ $variation_id ] ) );
+		}
+
+		if ( isset( $_POST['l_sleeve_image_id'][ $variation_id ] ) && ! empty( $_POST['l_sleeve_image_id'][ $variation_id ] ) ) {
+			$variation->update_meta_data( 'pdn_l_sleeve_image_id', esc_attr( $_POST['l_sleeve_image_id'][ $variation_id ] ) );
+		}
 	}
+}
+
 	public function pdn_gallery_hook_template( $html, $thumbnails_id ){
 		global $product;
 		$attachment_ids = $product->get_gallery_image_ids();
@@ -465,31 +485,31 @@ class DesignForm{
 		if( ! empty( $variations ) ){
 
 			foreach( $variations as $variable ):
-			$variation_object = wc_get_product( $variable['variation_id'] );
-			$front_image   		= $variation_object->get_meta( 'pdn_front_image_id' );
+			$variation_object   = wc_get_product( $variable['variation_id'] );
+			$front_image   	= $variation_object->get_meta( 'pdn_front_image_id' );
 			$back_image   		= $variation_object->get_meta( 'pdn_back_image_id' );
 			$r_sleeve_image   	= $variation_object->get_meta( 'pdn_r_sleeve_image_id' );
 			$l_sleeve_image   	= $variation_object->get_meta( 'pdn_l_sleeve_image_id' );
 			//esc_url( $variable['image']['url'] );
 			$attribbute_color = wc_get_product_variation_attributes( $variation_object->get_id() );
 				if ( array_key_exists(  $color_term, $attribbute_color ) ):
-					$html .= sprintf( '<div class="prodesign-varibale" id="prodesign-varibale-%s">', esc_attr($attribbute_color[$color_term] ) );
-					$html .= sprintf( '<ul class="prodesign-variable-gellery" id="prodesign-variable-gellery-%s">', esc_attr( $attribbute_color[$color_term] ) );
+					$html .= sprintf( '<div class="prodesign-varibale" id="prodesign-varibale-%s">', str_replace( '%', '', esc_attr($attribbute_color[$color_term] ) ) );
+					$html .= sprintf( '<ul class="prodesign-variable-gellery" id="prodesign-variable-gellery-%s">', str_replace( '%', '', esc_attr( $attribbute_color[$color_term] ) ) );
 					
 					if( $front_image ):
-						$html .= sprintf( '<li class="pd-active" id="pdn-select-%s-front" data-set="front"><img src="%s"></li>', esc_attr( $attribbute_color[$color_term] ),  esc_url( wp_get_attachment_url( $front_image ) ) );
+						$html .= sprintf( '<li class="pd-active" id="pdn-select-%s-front" data-set="front"><img src="%s"></li>', str_replace( '%', '', esc_attr( $attribbute_color[$color_term] ) ),  esc_url( wp_get_attachment_url( $front_image ) ) );
 					endif;
 
 					if( $back_image ):
-						$html .= sprintf( '<li class="" id="pdn-select-%s-back" data-set="back"><img src="%s"></li>', esc_attr( $attribbute_color[$color_term] ),  esc_url( wp_get_attachment_url( $back_image ) ) );
+						$html .= sprintf( '<li class="" id="pdn-select-%s-back" data-set="back"><img src="%s"></li>', str_replace('%', '', esc_attr( $attribbute_color[$color_term] ) ),  esc_url( wp_get_attachment_url( $back_image ) ) );
 					endif;
 
 					if( $r_sleeve_image ):
-						$html .= sprintf( '<li class="" id="pdn-select-%s-rsleeve" data-set="rsleeve"><img src="%s"></li>', esc_attr( $attribbute_color[$color_term] ),  esc_url( wp_get_attachment_url( $r_sleeve_image ) ) );
+						$html .= sprintf( '<li class="" id="pdn-select-%s-rsleeve" data-set="rsleeve"><img src="%s"></li>', str_replace( '%', '', esc_attr( $attribbute_color[$color_term] ) ),  esc_url( wp_get_attachment_url( $r_sleeve_image ) ) );
 					endif;
 
 					if( $l_sleeve_image ):
-						$html .= sprintf( '<li class="" id="pdn-select-%s-lsleeve" data-set="lsleeve"><img src="%s"></li>', esc_attr( $attribbute_color[$color_term] ),  esc_url( wp_get_attachment_url( $l_sleeve_image ) ) );
+						$html .= sprintf( '<li class="" id="pdn-select-%s-lsleeve" data-set="lsleeve"><img src="%s"></li>', str_replace( '%', '', esc_attr( $attribbute_color[$color_term] ) ),  esc_url( wp_get_attachment_url( $l_sleeve_image ) ) );
 					endif;
 
 					$html .= '</ul>';
@@ -554,13 +574,3 @@ class DesignForm{
  		return $rdfile;
 	}
 }
-
-
-
-
-
-
-
-
-
-
